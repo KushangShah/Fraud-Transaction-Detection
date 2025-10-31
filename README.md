@@ -139,7 +139,7 @@ Financial fraud is one of the fastest-growing threats in today’s digital econo
     <img src="images/chart_5.png" alt="Chart 1" width="400" style="border-radius: 20px; margin: 10px;">
     <img src="images/chart_3.png" alt="Chart 2" width="400" style="border-radius: 20px; margin: 10px;">
     <img src="images/chart_13.png" alt="Chart 3" width="400" style="border-radius: 20px; margin: 10px;">
-    <img src="images/chart_14.png" alt="Chart 4" width="400" style="border-radius: 20px; margin: 10px;">
+    <img src="images/Chart_14.png" alt="Chart 4" width="400" style="border-radius: 20px; margin: 10px;">
     <img src="images/missing_value.png" alt="Chart 5" width="400" height="160" style="border-radius: 20px; margin: 10px;">
     <img src="images/ML_model.png" alt="Chart 6" width="400" style="border-radius: 20px; margin: 10px;">
   </p>
@@ -153,7 +153,79 @@ Financial fraud is one of the fastest-growing threats in today’s digital econo
 <details open>
   <summary style="font-size: 22px; text-align:center; font-weight:bold;">📘 Conclusion</summary>
   <br>
-  <!-- (Insert the previously enhanced Conclusion section here — no need to repeat) -->
+  <details open>
+  <summary style="font-size: 22px; text-align:center; font-weight:bold;">📘 Conclusion</summary>
+  <br>
+  <div style="font-size:16px; line-height:1.6; text-align:justify;">
+  
+  The analysis and modeling process for <b>Fraud Transaction Detection</b> revealed several key findings derived from data exploration, hypothesis testing, and machine learning evaluation.  
+
+  <ol>
+    <li>
+      <b>Data Characteristics:</b>  
+      The dataset is <b>large and highly imbalanced</b>, with significantly fewer fraudulent transactions compared to legitimate ones.  
+      Handling this imbalance was crucial to prevent model bias toward the majority class.  
+      Initial preprocessing steps—including data type corrections and <b>outlier treatment</b> in <code>TX_AMOUNT</code>—ensured data quality and consistency.
+    </li>
+    <br>
+    <li>
+      <b>Key Predictive Features:</b>  
+      Feature engineering proved effective in capturing fraud-related behavior:
+      <ul>
+        <li><b>Transaction Amount (<code>TX_AMOUNT</code>):</b> Fraudulent transactions typically involved <b>higher amounts</b> than normal ones, confirmed by both t-tests and visual analysis. The <code>AMOUNT_OVER_220</code> flag successfully represented this pattern.</li>
+        <li><b>Spending Ratio (<code>SPENDING_RATIO</code>):</b> Transactions showing unusually high spending compared to a customer’s typical behavior were highly indicative of fraud, supported by statistically significant t-test results.</li>
+        <li><b>Terminal Fraud History (<code>TERMINAL_FRAUD_COUNT</code>):</b> Terminals with a higher historical fraud count were more likely to process fraudulent transactions, confirmed through Chi-square testing and correlation heatmaps—aligning with the simulated scenario of compromised terminals.</li>
+      </ul>
+    </li>
+    <br>
+    <li>
+      <b>Temporal Patterns:</b>  
+      Although time-based variables were not directly used in model training, exploratory analysis revealed <b>hourly and daily transaction trends</b>.  
+      These insights suggest potential for future <b>feature engineering</b>—such as incorporating time-based risk scores or behavioral windows—to enhance model performance in real-world deployments.
+    </li>
+    <br>
+    <li>
+      <b>Model Performance:</b>  
+      Multiple models were trained and evaluated on the balanced dataset.  
+      <ul>
+        <li><b>Random Forest</b> delivered the <b>best performance</b> with a ROC-AUC of <b>0.996</b> and Recall of <b>0.995</b>. This indicates excellent fraud detection capability, identifying nearly all fraudulent cases.</li>
+        <li>While Precision (<b>0.375</b>) was moderate—implying more false positives—this trade-off is acceptable in fraud detection where <b>maximizing Recall</b> is the priority to minimize financial loss.</li>
+        <li><b>XGBoost</b> and <b>LightGBM</b> also performed strongly, though slightly below Random Forest. <b>Logistic Regression</b> showed higher Precision but lower Recall and ROC-AUC, making it less suitable for high-risk fraud detection contexts.</li>
+      </ul>
+    </li>
+    <br>
+    <li>
+      <b>Confusion Matrix Insights (Random Forest):</b>
+      <ul>
+        <li><b>True Positives:</b> <b>14,612</b> – Most actual fraud cases correctly detected.</li>
+        <li><b>False Negatives:</b> <b>69</b> – Very few missed frauds, a key success metric for business safety.</li>
+        <li><b>False Positives:</b> <b>24,399</b> – Some legitimate transactions were flagged as fraud, highlighting the need for fine-tuning or additional verification layers in deployment.</li>
+      </ul>
+      This trade-off underscores the typical <b>Precision–Recall balance</b> in fraud detection systems.
+    </li>
+    <br>
+    <li>
+      <b>Overall Conclusion:</b>  
+      The engineered features—<code>TX_AMOUNT</code>, <code>SPENDING_RATIO</code>, and <code>TERMINAL_FRAUD_COUNT</code>—effectively capture fraud patterns in this simulated dataset.  
+      The <b>Random Forest model</b> stands out as the most robust performer, achieving excellent recall and strong overall accuracy.  
+      Although there is room for improvement in precision, the current approach offers a reliable foundation for a production-grade fraud detection pipeline.  
+      Future work should explore:
+      <ul>
+        <li>Advanced time-based and behavioral feature engineering</li>
+        <li>Hyperparameter tuning for top-performing models</li>
+        <li>Optimization of the precision–recall balance based on business risk tolerance</li>
+      </ul>
+    </li>
+  </ol>
+
+  <p style="margin-top:10px;">
+    <b>In summary:</b> The project successfully demonstrates how feature engineering, data balancing, and ensemble modeling can build a powerful and interpretable fraud detection system capable of minimizing financial risk and maximizing fraud capture rates.
+  </p>
+
+  </div>
+</details>
+<br><br>
+
 </details>
 
 <hr><br>
